@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "Add a Movie";
+}
+
+@model Movie
+<!--This code creates a form object that is used to store information about movies-->
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<div class="container">
+    <h2 class="text-center">Movie Form</h2>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 pb-5">
+
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <!-- Form -->
+            <form asp-action="EditMovie" method="post">
+                <div class="card border-primary rounded-0">
+                    <div class="card-header p-0">
+                        <div class="bg-info text-white text-center py-2">
+                            <h3>Edit a Movie</h3>
+                            <p class="m-0">Only the best may be entered</p>
+                        </div>
+                    </div>
+                    <div class="card-body p-3">
+
+                        <!-- Category -->
+                        <div class="form-group">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-bars text-info"></i></div>
+                                </div>
+                                <input type="text" class="form-control" asp-for="Category" placeholder="Category" required>
+                            </div>
+                        </div>
+
+                        <!-- Title -->
+                        <div class="form-group">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-info text-info"></i></div>
+                                </div>
+                                <input type="text" class="form-control" asp-for="Title" placeholder="Title" required>
+                            </div>
+                        </div>
+
+                        <!-- Year -->
+                        <div class="form-group">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-rocket text-info"></i></div>
+                                </div>
+                                <input type="text" class="form-control" asp-for="Year" placeholder="Year" required>
+                            </div>
+                        </div>
+
+                        <!-- Director -->
+                        <div class="form-group">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-user-o text-info"></i></div>
+                                </div>
+                                <input type="text" class="form-control" asp-for="Director" placeholder="Director" required>
+                            </div>
+                        </div>
+
+                        <!-- Rating -->
+                        <div class="form-group">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-bars text-info"></i></div>
+                                </div>
+                                <select class="form-control" asp-for="Rating" placeholder="Rating" required>
+                                    <option value="" disabled selected>Select Rating</option>
+                                    <option>G</option>
+                                    <option>PG</option>
+                                    <option>PG-13</option>
+                                    <option>R</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Edited? -->
+                        <div class="form-group">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-bars text-info"></i></div>
+                                </div>
+                                <select class="form-control" asp-for="Edited" placeholder="Edited">
+                                    <option value="" disabled selected>Edited?</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- LentTo: -->
+                        <div class="form-group">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-address-book-o text-info"></i></div>
+                                </div>
+                                <input type="text" class="form-control" asp-for="LentTo" placeholder="Lent To:">
+                            </div>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="form-group">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-rocket text-info"></i></div>
+                                </div>
+                                <textarea asp-for="Notes" class="form-control" placeholder="Notes"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Set ID so when passed to the controller the right item is changed -->
+                        <input type="hidden" asp-for="MovieId" value="@Model.MovieId" />
+
+                        <div class="text-center">
+                            <input type="submit" value="Submit" class="btn btn-info btn-block rounded-0 py-2">
+                        </div>
+                    </div>
+
+                    <div asp-validation-summary="All"></div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "List of Movies";
+}
+
+<!--Page that lists movies which have been entered via the form on the AddMovies.cshtml page-->
+
+@model IEnumerable<Movie>;
+
+<div class="masthead container d-flex align-items-center flex-column">
+
+    <h2>Check out some fire movies!</h2>
+
+    <br />
+
+    <!-- Table used to display movies -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Title</th>
+                            <th>Year</th>
+                            <th>Director</th>
+                            <th>Rating</th>
+                            <th>Edited</th>
+                            <th>Lent To</th>
+                            <th>Notes</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model)
+                        {
+                            <tr>
+                                <td>@x.Category</td>
+                                <td>@x.Title</td>
+                                <td>@x.Year</td>
+                                <td>@x.Director</td>
+                                <td>@x.Rating</td>
+                                @if (x.Edited == true)
+                                {
+                                    <td>&#10004;</td>
+
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                <td>@x.LentTo</td>
+                                <td>@x.Notes</td>
+                                <td>
+                                    <form method="post" asp-action="RemoveMovie" asp-controller="home">
+                                        <input type="hidden" asp-for="@x.MovieId" name="MovieId" value="@x.MovieId" />
+                                        <button type="submit" class="btn btn-info">Remove</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="get" asp-action="EditMovie" asp-controller="home">
+                                        <input type="hidden" asp-for="@x.MovieId" name="MovieId" value="@x.MovieId" />
+                                        <button type="submit" class="btn btn-info">Edit</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
